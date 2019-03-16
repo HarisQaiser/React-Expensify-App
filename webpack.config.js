@@ -1,8 +1,13 @@
 // entry -> output
 const path = require('path');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
+module.exports = (env) => {
+    const isProduction = env === 'production';
+    // const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+    // const CSSExtract = new ExtractTextPlugin('styles.css');
 
-module.exports = {
+    return{
     entry: './src/app.js',
     output: {
         path: path.join(__dirname, 'public'),
@@ -16,15 +21,40 @@ module.exports = {
         }, {
          test: /\.s?css$/,
          use: [
-             'style-loader',
-             'css-loader',
-             'sass-loader'
-         ]
-    }]
-    },
-  
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                // you can specify a publicPath here
+                // by default it use publicPath in webpackOptions.output
+                publicPath: '../'
+              }
+            },
+            {
+                loader: 'css-loader',
+                options: {
+                    sourceMap: true
+                }
+            },
+            {
+                loader: 'sass-loader',
+                options:{
+                    sourceMap: true
+               }
+             }
+           ]
+         }]
+   },
+    plugins: [
+        new MiniCssExtractPlugin({
+          // Options similar to the same options in webpackOptions.output
+          // both options are optional
+          filename: "[name].css",
+          chunkFilename: "[id].css"
+        })
+      ],
+    
     mode: 'production',
-    devtool: 'cheap-module-eval-source-map',
+    devtool: isProduction ? 'source-map' : 'inline-source-map',
     devServer: {
         contentBase: path.join(__dirname, 'public'),
         historyApiFallback: true
@@ -34,5 +64,5 @@ module.exports = {
         maxEntrypointSize: 512000,
         maxAssetSize: 512000
     }
-
+  }
 };

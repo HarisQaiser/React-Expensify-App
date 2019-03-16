@@ -22,6 +22,7 @@ const store = configureStore();
 // }, 3000)
 
 const jsx = (
+  
     <Provider store = {store}>
       <AppRouter />
     </Provider>
