@@ -69,18 +69,18 @@ test('should sort by amount',() =>{
     expect(sortByAmount).toHaveBeenCalled();
 });
 
-test('sholud handle date changes',() =>{
-    const startDate = moment(0).add(4,'years');
-    const endDate = moment(0).add(8,'years');
-    wrapper.find('DateRangePicker').prop('onDatesChange')({ startDate, endDate});
-    expect(setStartDate).toHaveBeenLastCalledWith(startDate);
-    expect(setEndDate).toHaveBeenLastCalledWith(endDate);
+// test('sholud handle date changes',() =>{
+//     const startDate = moment(0).add(4,'years');
+//     const endDate = moment(0).add(8,'years');
+//     wrapper.find('DateRangePicker').prop('onDatesChange')({ startDate, endDate});
+//     expect(setStartDate).toHaveBeenLastCalledWith(startDate);
+//     expect(setEndDate).toHaveBeenLastCalledWith(endDate);
 
-});
+// });
 
-test('sholud handle focus changes',() =>{
-    const calenderFocused = 'endDate';
-    wrapper.find('DateRangePicker').prop('onFocusChange')(calenderFocused);
-    expect(wrapper.state('calenderFocused')).toBe(calenderFocused);
+// test('sholud handle focus changes',() =>{
+//     const calenderFocused = 'endDate';
+//     wrapper.find('DateRangePicker').prop('onFocusChange')(calenderFocused);
+//     expect(wrapper.state('calenderFocused')).toBe(calenderFocused);
 
-});
+// });
