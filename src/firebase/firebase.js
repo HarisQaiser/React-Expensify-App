@@ -1,39 +1,123 @@
 import * as firebase from 'firebase';
-import * as expenseActions from '../actions/expenses';
 
+// import * as expenseActions from '../actions/expenses';
+
+// process.env.NODE_ENV
+
+//let firebaseConfig = JSON.parse(process.env.FIREBASE_CONFIG);
 
 const config = {
    // Initialize Firebase
-   apiKey: "AIzaSyCAUWWgYfPMHc5kPqeAi3rd-6EkIdb4N7I",
-   authDomain: "expensify-a0d21.firebaseapp.com",
-   databaseURL: "https://expensify-a0d21.firebaseio.com",
-   projectId: "expensify-a0d21",
-   storageBucket: "expensify-a0d21.appspot.com",
-   messagingSenderId: "781218189330"
+      apiKey: "AIzaSyCAUWWgYfPMHc5kPqeAi3rd-6EkIdb4N7I",
+      authDomain: "expensify-a0d21.firebaseapp.com",
+      databaseURL: "https://expensify-a0d21.firebaseio.com",
+      projectId: "expensify-a0d21",
+      storageBucket: "expensify-a0d21.appspot.com",
+      messagingSenderId: "781218189330",
+      appId: "1:781218189330:web:b7fcd7cce95b1801"
 };
 
 firebase.initializeApp(config);
 
+
+console.log(config.databaseURL);
+
 const database = firebase.database();
-
-database.ref().on('value', (snaopshot) => {
-   console.log(snaopshot.val());
-});
-
-setTimeout(() => {
-   database.ref('age').set(24);
-}, 3500);
+export { firebase, database as default };
 
 
-setTimeout(() => {
-   database.ref().off();
-}, 7000);
+// console.log(`Database url is :${process.env.DATABASE_URL}`);
+//console.log("process_env", process.env.FIREBASE_DATABASE_URL);
+
+// child _removed
+// database.ref('expenses').on('child_removed', (snapshot) => {
+//    console.log(snapshot.key, snapshot.val());
+// });
+
+// // child_changed
+// database.ref('expenses').on('child_changed', (snapshot) => {
+//    console.log(snapshot.key, snapshot.val());
+// });
+
+// // child_added
+// database.ref('expenses').on('child_added', (snapshot) => {
+//    console.log(snapshot.key, snapshot.val());
+// });
+
+// database.ref('expenses').orderByChild('amount')
+//    .on('child_added', (snapshot) => {
+//       console.log(snapshot.key + ' has ' + snapshot.val().amount + ' in Rupees');
+//    });
+// database.ref('expenses')
+//    .once('value')
+//    .then((snapshot) => {
+//       const expenses = [];
+
+//       snapshot.forEach((childSnapshot) =>{
+//          expenses.push({
+//             id: childSnapshot.key,
+//             ...childSnapshot.val()
+//          });
+//       });
+//       console.log(expenses); 
+//    });
+
+// database.ref('expenses')
+//    .on('value', (snapshot) => {
+//       const expenses = [];
+//       snapshot.forEach((childSnapshot) => {
+//          expenses.push({
+//             id: childSnapshot.key,
+//             ...childSnapshot.val()
+//          });
+//       });
+//       console.log(expenses);
+//    });
 
 
-setTimeout(() => {
-   database.ref('age').set(28);
-}, 10500);
-// database.ref('location/city')
+// database.ref('expenses').push({
+//    description: 'expenses 1',
+//    amount: 12500,
+//    note: 'Hello there? How are you?',
+//    createdAt: 'june-20-1957'
+// });
+
+
+
+
+
+//database.ref('notes/-LbDgWn8TF4VL1cC6uJD').remove();
+// database.ref('notes').push({
+//    title: 'Course Topic',
+//    body: 'React-Native, Angular, Python, Java'
+// });
+
+
+// database.ref().on('value', (snapshot) => {
+//    const val = snapshot.val();
+//    console.log(`${val.name} is a ${val.job.title} at ${val.job.company}`);
+// });
+
+// const onValueChange = database.ref().on('value', (snapshot) => {
+//    console.log(snapshot.val());
+// }, (e) => {
+//    console.log("Error with data fetching", e);
+// });
+
+// setTimeout(() => {
+//    database.ref('age').set(24);
+// }, 3500);
+
+
+// setTimeout(() => {
+//    database.ref().off(onValueChange);
+// }, 7000);
+
+
+// setTimeout(() => {
+//    database.ref('age').set(27);
+// }, 10500);
+// // database.ref('location/city')
 //    .once('value')
 //    .then((snapshot) => {
 //       const val = snapshot.val();
