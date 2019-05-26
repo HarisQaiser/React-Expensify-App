@@ -1,4 +1,4 @@
-import * as firebase from 'firebase';
+import * as firebase from "firebase";
 
 // import * as expenseActions from '../actions/expenses';
 
@@ -7,24 +7,22 @@ import * as firebase from 'firebase';
 //let firebaseConfig = JSON.parse(process.env.FIREBASE_CONFIG);
 
 const config = {
-   // Initialize Firebase
-      apiKey: "AIzaSyCAUWWgYfPMHc5kPqeAi3rd-6EkIdb4N7I",
-      authDomain: "expensify-a0d21.firebaseapp.com",
-      databaseURL: "https://expensify-a0d21.firebaseio.com",
-      projectId: "expensify-a0d21",
-      storageBucket: "expensify-a0d21.appspot.com",
-      messagingSenderId: "781218189330",
-      appId: "1:781218189330:web:b7fcd7cce95b1801"
+  // Initialize Firebase
+  apiKey: "AIzaSyCAUWWgYfPMHc5kPqeAi3rd-6EkIdb4N7I",
+  authDomain: "expensify-a0d21.firebaseapp.com",
+  databaseURL: "https://expensify-a0d21.firebaseio.com",
+  projectId: "expensify-a0d21",
+  storageBucket: "expensify-a0d21.appspot.com",
+  messagingSenderId: "781218189330",
+  appId: "1:781218189330:web:b7fcd7cce95b1801"
 };
 
 firebase.initializeApp(config);
-
 
 console.log(config.databaseURL);
 
 const database = firebase.database();
 export { firebase, database as default };
-
 
 // console.log(`Database url is :${process.env.DATABASE_URL}`);
 //console.log("process_env", process.env.FIREBASE_DATABASE_URL);
@@ -59,7 +57,7 @@ export { firebase, database as default };
 //             ...childSnapshot.val()
 //          });
 //       });
-//       console.log(expenses); 
+//       console.log(expenses);
 //    });
 
 // database.ref('expenses')
@@ -74,7 +72,6 @@ export { firebase, database as default };
 //       console.log(expenses);
 //    });
 
-
 // database.ref('expenses').push({
 //    description: 'expenses 1',
 //    amount: 12500,
@@ -82,16 +79,11 @@ export { firebase, database as default };
 //    createdAt: 'june-20-1957'
 // });
 
-
-
-
-
 //database.ref('notes/-LbDgWn8TF4VL1cC6uJD').remove();
 // database.ref('notes').push({
 //    title: 'Course Topic',
 //    body: 'React-Native, Angular, Python, Java'
 // });
-
 
 // database.ref().on('value', (snapshot) => {
 //    const val = snapshot.val();
@@ -108,11 +100,9 @@ export { firebase, database as default };
 //    database.ref('age').set(24);
 // }, 3500);
 
-
 // setTimeout(() => {
 //    database.ref().off(onValueChange);
 // }, 7000);
-
 
 // setTimeout(() => {
 //    database.ref('age').set(27);
@@ -144,13 +134,11 @@ export { firebase, database as default };
 //    console.log("This Failed!", err);
 // });
 
-
 // database.ref().update({
 //    stressLevel: 9,
 //    'job/company': 'Amazon',
 //    'location/city': 'Seattle'
 // });
-
 
 // database.ref('isSingle')
 // .remove()
@@ -159,8 +147,6 @@ export { firebase, database as default };
 //   }).catch((err) =>{
 //      console.log('Remove failed',err);
 //   });
-
-
 
 // database.ref().set('This is my data.');
 
@@ -174,4 +160,3 @@ export { firebase, database as default };
 //   }).catch((err) => {
 //      console.log("Second set failed!",err);
 //   });
-

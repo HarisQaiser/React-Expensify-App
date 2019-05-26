@@ -1,19 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import AppRouter from './routers/AppRouter';
-import configureStore from './store/configureStore';
-import {addExpense} from './actions/expenses';
-import {setTextFilter} from './actions/filters';
-import getVisibleExpenses from './selectors/expenses';
-import 'normalize.css/normalize.css';
-import './styles/styles.scss';
-import 'react-dates/lib/css/_datepicker.css';
-import './firebase/firebase';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import AppRouter from "./routers/AppRouter";
+import configureStore from "./store/configureStore";
+import { startSetExpenses } from "./actions/expenses";
+import { setTextFilter } from "./actions/filters";
+import getVisibleExpenses from "./selectors/expenses";
+import "normalize.css/normalize.css";
+import "./styles/styles.scss";
+import "react-dates/lib/css/_datepicker.css";
+import "./firebase/firebase";
 // import './playground/promise';
 
 const store = configureStore();
-
 
 // store.dispatch(setTextFilter('water'));
 
@@ -22,13 +21,17 @@ const store = configureStore();
 // }, 3000)
 
 const jsx = (
-  
-    <Provider store = {store}>
-      <AppRouter />
-    </Provider>
+  <Provider store={store}>
+    <AppRouter />
+  </Provider>
 );
 
-ReactDOM.render(jsx,document.getElementById("app"));
+ReactDOM.render(<p>Loading...</p>, document.getElementById("app"));
+store.dispatch(startSetExpenses()).then(() => {
+  ReactDOM.render(jsx, document.getElementById("app"));
+});
+
+//ReactDOM.render(jsx, document.getElementById("app"));
 
 // const Layout = (props) =>{
 //     return(
@@ -40,7 +43,6 @@ ReactDOM.render(jsx,document.getElementById("app"));
 //     );
 // };
 
-
 // ReactDOM.render((
 //     <Layout>
 //       <div>
@@ -50,11 +52,9 @@ ReactDOM.render(jsx,document.getElementById("app"));
 //     </Layout>
 // ), document.getElementById('app'));
 
-    
-
 // class OldSyntax {
 //     constructor() {
-//         this.name = 'Mike'; 
+//         this.name = 'Mike';
 //         this.getGreeting = this.getGreeting.bind(this);
 
 //     }
@@ -77,9 +77,6 @@ ReactDOM.render(jsx,document.getElementById("app"));
 // const GETGreeting = newSyntax.getGreeting;
 // console.log(GETGreeting());
 
-
-
-
 // const jsx =(
 //     <div>
 //         <Header />
@@ -87,13 +84,7 @@ ReactDOM.render(jsx,document.getElementById("app"));
 //         <Option />
 //         <AddOption />
 //     </div>
-// ); 
-
-
-
-
-
-
+// );
 
 // import "./utils.js";
 //import subtract ,{ square, add, } from './utils.js';
@@ -101,10 +92,9 @@ ReactDOM.render(jsx,document.getElementById("app"));
 //import isSenior, { isAdult, canDrink} from './person.js'
 
 // console.log("app.js is running!");
-// console.log(square(4)); 
+// console.log(square(4));
 // console.log(add(5,4));
 // console.log(subtract (100,10));
-
 
 // console.log(isAdult(18));
 // console.log(canDrink(23));
