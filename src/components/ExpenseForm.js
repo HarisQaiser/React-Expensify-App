@@ -27,7 +27,7 @@ export default class ExpenseForm extends React.Component {
   onNoteChange = e => {
     const note = e.target.value;
     //e.persist();
-    this.setState(() => ({ note: e.target.value }));
+    this.setState(() => ({ note }));
   };
   onAmountChange = e => {
     const amount = e.target.value;
