@@ -11,6 +11,8 @@ import {
 import expenses from "../fixtures/expenses";
 import database from "../../firebase/firebase";
 
+const uid = "thisismyuid";
+const defaultAuthState = { auth: { uid } };
 const createMockStore = configureMockStore([thunk]);
 
 beforeEach(done => {
@@ -19,7 +21,7 @@ beforeEach(done => {
     expensesData[id] = { description, note, amount, createdAt };
   });
   database
-    .ref("expenses")
+    .ref(`users/${uid}/expenses`)
     .set(expensesData)
     .then(() => done());
 });
@@ -52,7 +54,7 @@ test("should setup add expense object with provided value", () => {
 });
 
 test("should run expense to database and store", done => {
-  const store = createMockStore({});
+  const store = createMockStore(defaultAuthState);
   const expenseData = {
     description: "Mouse",
     amount: 2200,
@@ -71,7 +73,7 @@ test("should run expense to database and store", done => {
           ...expenseData
         }
       });
-      return database.ref(`expenses/${actions[0].expense.id}`).once("value");
+      return database.ref(`users/expenses/${actions[0].expense.id}`).once("value");
     })
     .then(snapshot => {
       expect(snapshot.val()).toEqual(expenseData);
@@ -80,7 +82,7 @@ test("should run expense to database and store", done => {
 });
 
 test("should setup add expense action object with default values", done => {
-  const store = createMockStore({});
+  const store = createMockStore(defaultAuthState);
   const expenseDefaults = {
     description: "",
     amount: 0,
@@ -99,7 +101,7 @@ test("should setup add expense action object with default values", done => {
           ...expenseDefaults
         }
       });
-      return database.ref(`expenses/${actions[0].expense.id}`).once("value");
+      return database.ref(`users/${uid}/expenses/${actions[0].expense.id}`).once("value");
     })
     .then(snapshot => {
       expect(snapshot.val()).toEqual(expenseDefaults);
@@ -114,8 +116,8 @@ test("sholud setup sext expense object with data", () => {
     expenses
   });
 });
-            
-                /* First create sepaerate test database then run this test */
+
+/* First create sepaerate test database then run this test */
 // test("should fetch expense from firebase", (done) => {
 //   const store = createMockStore({});
 //   store.dispatch(startSetExpenses()).then(() => {
